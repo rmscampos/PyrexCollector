@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Pyrex Details</h1>
+
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">{{ pyrex.pattern }}</span>
+    <p>Shape: {{ pyrex.shape }}</p>
+    <p>Year: {{ pyrex.year }}</p>
+    <p>Origin: {{ pyrex.origin }}</p>
+  </div>
+</div>
+
+{% endblock %}
