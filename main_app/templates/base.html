@@ -18,8 +18,11 @@
           <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Pyrex Collector</a></li>
         </ul>
         <ul class="right">
-          <li><a href="/about">About</a></li>
-          <li><a href="/pyrexes">View All My Pyrex</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'foods_create' %}">Add a Food</a></li>
+          <li><a href="{% url 'foods_index' %}">View All Food</a></li>
+          <li><a href="{% url 'pyrexes_create' %}">Add a Pyrex</a></li>
+          <li><a href="{% url 'index' %}">View All My Pyrex</a></li>
         </ul>
       </div>
     </nav> 

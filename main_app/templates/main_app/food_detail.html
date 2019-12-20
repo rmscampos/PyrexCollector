@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Food Details</h1>
+
+<div class="row">
+  <div class="col s6 col-offset-3">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{ food.dish_name }}</span>
+        <p>Date: {{ food.date_made }}</p>
+      </div>
+      <div class="card-action">
+        <a href="{% url 'foods_update' food.id %}">Edit</a>
+        <a href="{% url 'foods_delete' food.id %}">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

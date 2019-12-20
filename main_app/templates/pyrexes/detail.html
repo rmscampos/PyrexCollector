@@ -10,6 +10,36 @@
     <p>Year: {{ pyrex.year }}</p>
     <p>Origin: {{ pyrex.origin }}</p>
   </div>
+  <div class="card-action">
+    <a href="{% url 'pyrexes_update' pyrex.id %}">Edit</a>
+    <a href="{% url 'pyrexes_delete' pyrex.id %}">Delete</a>
+  </div>
 </div>
+
+<hr>
+<div class="row">
+  <div class="col s6">
+    <h3>Food in the {{ pyrex.shape }} {{ pyrex.pattern }}</h3>
+    {% if pyrex.foods.count %}
+      {% for pyrex in pyrex.foods.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+              <span>{{ food.date_made }}</span> {{ food.dish_name }}
+            </span>
+          </div>
+          <div class="card-action">
+            <form action="{% url 'unassoc_food' pyrex.id food.id %}" method="post">
+                {% csrf_token %}
+              <button type="submit" class="btn">Remove</button>
+            </form>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>There is no food in this Pyrex!</h5>
+    {% endif %}
+  </div>
+
 
 {% endblock %}
