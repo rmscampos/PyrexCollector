@@ -3,16 +3,32 @@
 
 <h1>Pyrex Details</h1>
 
-<div class="card">
-  <div class="card-content">
-    <span class="card-title">{{ pyrex.pattern }}</span>
-    <p>Shape: {{ pyrex.shape }}</p>
-    <p>Year: {{ pyrex.year }}</p>
-    <p>Origin: {{ pyrex.origin }}</p>
+<div class="row">
+  <div class="col s6">
+    <div class="card">
+     <div class="card-content">
+       <span class="card-title">{{ pyrex.pattern }}</span>
+       <p>Shape: {{ pyrex.shape }}</p>
+       <p>Year: {{ pyrex.year }}</p>
+       <p>Origin: {{ pyrex.origin }}</p>
+     </div>
+    <div class="card-action">
+      <a href="{% url 'pyrexes_update' pyrex.id %}">Edit</a>
+      <a href="{% url 'pyrexes_delete' pyrex.id %}">Delete</a>
+    </div>
   </div>
-  <div class="card-action">
-    <a href="{% url 'pyrexes_update' pyrex.id %}">Edit</a>
-    <a href="{% url 'pyrexes_delete' pyrex.id %}">Delete</a>
+ <!-- Insert photo markup below this comment -->
+  {% for photo in pyrex.photo_set.all %}
+    <img class="responsive-img card-panel" src="{{photo.url}}">
+  {% empty %}
+    <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+  {% endfor %}
+    <form action="{% url 'add_photo' pyrex.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+      {% csrf_token %}
+      <input type="file" name="photo-file">
+      <br><br>
+      <input type="submit" class="btn" value="Upload Photo">
+    </form>
   </div>
 </div>
 
@@ -41,5 +57,28 @@
     {% endif %}
   </div>
 
+  <div class="col s6">
+    <h3>Available Food</h3>
+    {% if foods.count %}
+      {% for food in foods.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+              <span>{{ food.date_made }}</span> {{ food.dish_name }}
+            </span>
+          </div>
+          <div class="card-action">
+            <form action="{% url 'assoc_food' pyrex.id food.id %}" method="post">
+                {% csrf_token %}
+              <button type="submit" class="btn">Add</button>
+            </form>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>{{pyrex.shape}} Already Has All Foods Available</h5>
+    {% endif %}
+  </div>
+</div>
 
 {% endblock %}
