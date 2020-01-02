@@ -20,5 +20,7 @@ urlpatterns = [
     path('foods/<int:pk>/delete/', views.FoodDelete.as_view(), name='foods_delete'),
     path('cats/<int:pyrex_id>/add_photo/', views.add_photo, name='add_photo'),
 
+    path('accounts/signup/', views.signup, name='signup'),
+
 
 ]
