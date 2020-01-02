@@ -32,7 +32,7 @@ def pyrexes_detail(request, pyrex_id):
 
 class PyrexCreate(LoginRequiredMixin, CreateView):
   model = Pyrex
-  fields = '__all__'
+  fields = ['pattern', 'shape', 'year', 'origin']
 
   def form_valid(self, form):
     form.instance.user = self.request.user
