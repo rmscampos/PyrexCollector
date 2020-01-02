@@ -13,22 +13,22 @@
 <body>
   <header class="navbar-fixed">
     <nav>
-      <div class="nav-wrapper">
+      <div class="nav-wrapper deep-purple lighten-2">
         <ul>
-          <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Pyrex Collector</a></li>
+          <li><a href="/" class="left brand-logo teal-text text-lighten-3">&nbsp;&nbsp;Pyrex Collector</a></li>
         </ul>
         <ul class="right">
-          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a class="teal-text text-lighten-4" href="{% url 'about' %}">About</a></li>
           {% if user.is_authenticated %}
-            <li><a href="{% url 'foods_create' %}">Add a Food</a></li>
-            <li><a href="{% url 'foods_index' %}">View All Food</a></li>
-            <li><a href="{% url 'pyrexes_create' %}">Add a Pyrex</a></li>
-            <li><a href="{% url 'index' %}">View All My Pyrex</a></li>
-            <li><a href="{% url 'logout' %}">Log Out</a></li>
-          {% else %}
-            <li><a href="{% url 'signup' %}">Sign Up</a></li>
-            <li><a href="{% url 'login' %}">Log In</a></li>
-          {% endif %}
+            <li><a class="teal-text text-lighten-4" href="{% url 'foods_create' %}">Add a Food</a></li>
+            <li><a class="teal-text text-lighten-4" href="{% url 'foods_index' %}">View All Food</a></li>
+            <li><a class="teal-text text-lighten-4" href="{% url 'pyrexes_create' %}">Add a Pyrex</a></li>
+            <li><a class="teal-text text-lighten-4" href="{% url 'index' %}">View All My Pyrex</a></li>
+            <li><a class="teal-text text-lighten-4" href="{% url 'logout' %}">Log Out</a></li>
+            {% else %}
+            <li><a class="teal-text text-lighten-4" href="{% url 'signup' %}">Sign Up</a></li>
+            <li><a class="teal-text text-lighten-4" href="{% url 'login' %}">Log In</a></li>
+            {% endif %}
         </ul>
       </div>
     </nav> 
