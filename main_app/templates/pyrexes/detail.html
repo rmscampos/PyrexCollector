@@ -45,10 +45,12 @@
             </span>
           </div>
           <div class="card-action">
+          {% if pyrex.foods %}
             <form action="{% url 'unassoc_food' pyrex.id food.id %}" method="post">
                 {% csrf_token %}
               <button type="submit" class="btn">Remove</button>
             </form>
+            {% endif %}
           </div>
         </div>
       {% endfor %}
