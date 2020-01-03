@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -28,7 +27,8 @@ def pyrexes_index(request):
 @login_required
 def pyrexes_detail(request, pyrex_id):
   pyrex = Pyrex.objects.get(id=pyrex_id)
-  return render(request, 'pyrexes/detail.html', { 'pyrex': pyrex })
+  foods_pyrex_doesnt_have = Food.objects.exclude(id__in = pyrex.foods.all().values_list('id'))
+  return render(request, 'pyrexes/detail.html', { 'pyrex': pyrex, 'foods': foods_pyrex_doesnt_have })
 
 class PyrexCreate(LoginRequiredMixin, CreateView):
   model = Pyrex
@@ -77,7 +77,7 @@ def unassoc_food(request, pyrex_id, food_id):
   Pyrex.objects.get(id=pyrex_id).foods.remove(food_id)
   return redirect('detail', pyrex_id=pyrex_id)
 
-class FoodList(LoginRequiredMixin, ListView):
+class FoodList(ListView):
   model = Food
 
 class FoodDetail(LoginRequiredMixin, DetailView):

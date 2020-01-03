@@ -21,6 +21,7 @@ class Pyrex(models.Model):
     shape = models.CharField(max_length=100)
     year = models.IntegerField()
     origin = models.CharField(max_length=100)
+    foods = models.ManyToManyField(Food)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

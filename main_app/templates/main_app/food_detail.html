@@ -8,7 +8,9 @@
     <div class="card">
       <div class="card-content">
         <span class="card-title">{{ food.dish_name }}</span>
-        <p>Date: {{ food.date_made }}</p>
+        <p>Date Made: {{ food.date_made }}</p>
+        <p>Chef: {{ food.chef }}</p>
+        <p>Description: {{ food.description }}</p>
       </div>
       <div class="card-action">
         <a href="{% url 'foods_update' food.id %}">Edit</a>
